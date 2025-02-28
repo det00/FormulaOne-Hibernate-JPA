@@ -1,43 +1,40 @@
 package dao;
 
 import database.HibernateUtil;
-import model.Equipo;
+import model.Motor;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
-public class EquipoDao {
+public class MotorDao {
     Session session;
 
-    public List<Equipo> getEquipos() {
+    public List<Motor> getMotores() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query<Equipo> query = session.createQuery("FROM Equipo e JOIN FETCH e.pilotos JOIN FETCH e.motor", Equipo.class);
-        List<Equipo> listaEquipos = query.list();
+        Query<Motor> query = session.createQuery("FROM Motor", Motor.class);
+        List<Motor> motores = query.list();
         session.getTransaction().commit();
         session.close();
-        return listaEquipos;
+        return motores;
     }
 
-    public void addEquipo(Equipo equipo) {
+    public void addMotor(Motor motor) {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        session.save(equipo);
+        session.save(motor);
         session.getTransaction().commit();
         session.close();
     }
 
-    public List<Equipo> getEquiposConJefesYMotores() {
+    public int countMotores() {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Query<Equipo> query = session.createQuery(
-                "FROM Equipo e JOIN FETCH e.jefeEquipo j JOIN FETCH e.motor m " +
-                        "ORDER BY e.nombre", Equipo.class
-        );
-        List<Equipo> result = query.list();
+        Query<Long> query = session.createQuery("SELECT COUNT(*) FROM Motor", Long.class);
+        long count = query.uniqueResult();
         session.getTransaction().commit();
         session.close();
-        return result;
+        return (int) count;
     }
 }

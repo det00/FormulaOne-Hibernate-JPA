@@ -17,8 +17,17 @@ public class JefeEquipo {
     private String nombre;
     private String apellido;
     private String pais;
+
+    public JefeEquipo(String nombre, String apellido, String pais, int edad, Equipo equipo) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.pais = pais;
+        this.edad = edad;
+        this.equipo = equipo;
+    }
+
     private int edad;
 
-    @OneToOne(mappedBy = "jefeEquipo", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "jefeEquipo")
     private Equipo equipo;
 }

@@ -16,6 +16,17 @@ public class Piloto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nombre;
+
+    public Piloto(String nombre, String apellidos, int edad, int campeonatos, String pais, Equipo equipo, List<Carrera> carreras) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.edad = edad;
+        this.campeonatos = campeonatos;
+        this.pais = pais;
+        this.equipo = equipo;
+        this.carreras = carreras;
+    }
+
     private String apellidos;
     private int edad;
     private int campeonatos;

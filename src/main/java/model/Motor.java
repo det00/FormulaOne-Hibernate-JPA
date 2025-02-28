@@ -20,6 +20,14 @@ public class Motor {
 
     @OneToMany(mappedBy = "motor", cascade = CascadeType.ALL)
     private List<Equipo> equipos;
+
+    public Motor(String nombre, List<Equipo> equipos, int cv, int campeonatos) {
+        this.nombre = nombre;
+        this.equipos = equipos;
+        this.cv = cv;
+        this.campeonatos = campeonatos;
+    }
+
     private int cv;
     private int campeonatos;
 }

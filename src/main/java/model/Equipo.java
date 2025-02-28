@@ -18,6 +18,17 @@ public class Equipo {
     private int id;
     private String nombre;
 
+    public Equipo(String nombre, Motor motor, List<Piloto> pilotos, JefeEquipo jefeEquipo, String pais, int yearFundado, int campeonatosDeEquipos, int campeonatosDePilotos) {
+        this.nombre = nombre;
+        this.motor = motor;
+        this.pilotos = pilotos;
+        this.jefeEquipo = jefeEquipo;
+        this.pais = pais;
+        this.yearFundado = yearFundado;
+        this.campeonatosDeEquipos = campeonatosDeEquipos;
+        this.campeonatosDePilotos = campeonatosDePilotos;
+    }
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "motor_id")
     private Motor motor;
